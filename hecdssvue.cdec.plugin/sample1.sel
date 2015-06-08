@@ -1,0 +1,46 @@
+[
+  {
+    "id": "750",
+    "type": "BATTERY VOLTAGE",
+    "subType": "",
+    "duration": "hourly",
+    "units": "volts",
+    "plot": "(<a href=/jspplot/jspPlotServlet.jsp?sensor_no=750&end=&geom=small&interval=2&cookies=cdec01>BAT VOL</a>)",
+    "dataCollection": "SATELLITE",
+    "dataAvailable": "02/01/1995 to present.",
+    "stationId": "HYF"
+  },
+  {
+    "id": "26668",
+    "type": "BATTERY VOLTAGE",
+    "subType": "",
+    "duration": "event",
+    "units": "volts",
+    "plot": "(<a href=/jspplot/jspPlotServlet.jsp?sensor_no=26668&end=&geom=small&interval=2&cookies=cdec01>BAT VOL</a>)",
+    "dataCollection": "SATELLITE",
+    "dataAvailable": "04/25/2014 to present.",
+    "stationId": "PME"
+  },
+  {
+    "id": "11538",
+    "type": "PRECIPITATION",
+    "subType": "ACCUMULATED",
+    "duration": "daily",
+    "units": "inches",
+    "plot": "(<a href=/jspplot/jspPlotServlet.jsp?sensor_no=11538&end=&geom=small&interval=30&cookies=cdec01>RAIN</a>)",
+    "dataCollection": "COMPUTED",
+    "dataAvailable": "10/01/2003 to present.",
+    "stationId": "SMB"
+  },
+  {
+    "id": "13080",
+    "type": "TEMPERATURE",
+    "subType": "AIR AVERAGE",
+    "duration": "daily",
+    "units": "deg f",
+    "plot": "(<a href=/jspplot/jspPlotServlet.jsp?sensor_no=13080&end=&geom=small&interval=30&cookies=cdec01>TEMP AV</a>)",
+    "dataCollection": "COMPUTED",
+    "dataAvailable": "10/01/2005 to present.",
+    "stationId": "RAN"
+  }
+]

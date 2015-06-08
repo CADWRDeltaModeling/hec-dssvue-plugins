@@ -1,0 +1,1256 @@
+[
+  {
+    "sensorNumber": 1,
+    "sensorName": "RIV STG",
+    "sensorDescription": "RIVER STAGE",
+    "units": "FEET"
+  },
+  {
+    "sensorNumber": 2,
+    "sensorName": "RAIN",
+    "sensorDescription": "PRECIPITATION, ACCUMULATED",
+    "units": "INCHES"
+  },
+  {
+    "sensorNumber": 3,
+    "sensorName": "SNOW WC",
+    "sensorDescription": "SNOW, WATER CONTENT",
+    "units": "INCHES"
+  },
+  {
+    "sensorNumber": 4,
+    "sensorName": "TEMP",
+    "sensorDescription": "TEMPERATURE, AIR",
+    "units": "DEG F"
+  },
+  {
+    "sensorNumber": 5,
+    "sensorName": "EL CND",
+    "sensorDescription": "ELECTRICAL CONDUCTIVTY MILLI S",
+    "units": "mS/cm"
+  },
+  {
+    "sensorNumber": 6,
+    "sensorName": "RES ELE",
+    "sensorDescription": "RESERVOIR ELEVATION",
+    "units": "FEET"
+  },
+  {
+    "sensorNumber": 7,
+    "sensorName": "REL SCH",
+    "sensorDescription": "RESERVOIR, SCHEDULED RELEASE",
+    "units": "CFS"
+  },
+  {
+    "sensorNumber": 8,
+    "sensorName": "FNF",
+    "sensorDescription": "FULL NATURAL FLOW",
+    "units": "CFS"
+  },
+  {
+    "sensorNumber": 9,
+    "sensorName": "WIND SP",
+    "sensorDescription": "WIND, SPEED",
+    "units": "MPH"
+  },
+  {
+    "sensorNumber": 10,
+    "sensorName": "WIND DR",
+    "sensorDescription": "WIND, DIRECTION",
+    "units": "DEG"
+  },
+  {
+    "sensorNumber": 11,
+    "sensorName": "FUEL MS",
+    "sensorDescription": "FUEL MOISTURE, WOOD",
+    "units": "%"
+  },
+  {
+    "sensorNumber": 12,
+    "sensorName": "REL HUM",
+    "sensorDescription": "RELATIVE HUMIDITY",
+    "units": "%"
+  },
+  {
+    "sensorNumber": 13,
+    "sensorName": "FUEL TP",
+    "sensorDescription": "FUEL TEMP,WOOD PROBE",
+    "units": "DEG F"
+  },
+  {
+    "sensorNumber": 14,
+    "sensorName": "BAT VOL",
+    "sensorDescription": "BATTERY VOLTAGE",
+    "units": "VOLTS"
+  },
+  {
+    "sensorNumber": 15,
+    "sensorName": "STORAGE",
+    "sensorDescription": "RESERVOIR STORAGE",
+    "units": "AF"
+  },
+  {
+    "sensorNumber": 16,
+    "sensorName": "RAINTIP",
+    "sensorDescription": "PRECIPITATION, TIPPING BUCKET",
+    "units": "INCHES"
+  },
+  {
+    "sensorNumber": 17,
+    "sensorName": "BAR PRE",
+    "sensorDescription": "ATMOSPHERIC PRESSURE",
+    "units": "INCHES"
+  },
+  {
+    "sensorNumber": 18,
+    "sensorName": "SNOW DP",
+    "sensorDescription": "SNOW DEPTH",
+    "units": "INCHES"
+  },
+  {
+    "sensorNumber": 19,
+    "sensorName": "SNOW LV",
+    "sensorDescription": "SNOW, ELEVATION OF SNOW LINE",
+    "units": "FEET"
+  },
+  {
+    "sensorNumber": 20,
+    "sensorName": "FLOW",
+    "sensorDescription": "FLOW, RIVER DISCHARGE",
+    "units": "CFS"
+  },
+  {
+    "sensorNumber": 21,
+    "sensorName": "VLOCITY",
+    "sensorDescription": "WATER, VELOCITY",
+    "units": "FT/SEC"
+  },
+  {
+    "sensorNumber": 22,
+    "sensorName": "RES CHG",
+    "sensorDescription": "RESERVOIR, STORAGE CHANGE",
+    "units": "AF"
+  },
+  {
+    "sensorNumber": 23,
+    "sensorName": "OUTFLOW",
+    "sensorDescription": "RESERVOIR OUTFLOW",
+    "units": "CFS"
+  },
+  {
+    "sensorNumber": 24,
+    "sensorName": "E T",
+    "sensorDescription": "EVAPOTRANSPORATION",
+    "units": "INCHES"
+  },
+  {
+    "sensorNumber": 25,
+    "sensorName": "TEMP W",
+    "sensorDescription": "TEMPERATURE, WATER",
+    "units": "DEG F"
+  },
+  {
+    "sensorNumber": 26,
+    "sensorName": "SOLAR R",
+    "sensorDescription": "SOLAR RADIATION",
+    "units": "W/M^2"
+  },
+  {
+    "sensorNumber": 27,
+    "sensorName": "TURB W",
+    "sensorDescription": "WATER, TURBIDITY",
+    "units": "NTU"
+  },
+  {
+    "sensorNumber": 28,
+    "sensorName": "CHLORPH",
+    "sensorDescription": "CHLOROPHYLL",
+    "units": "ug/L"
+  },
+  {
+    "sensorNumber": 29,
+    "sensorName": "NET RAD",
+    "sensorDescription": "NET RADIATION",
+    "units": "CAL/CM"
+  },
+  {
+    "sensorNumber": 30,
+    "sensorName": "TEMP AV",
+    "sensorDescription": "TEMPERATURE, AIR AVERAGE",
+    "units": "DEG F"
+  },
+  {
+    "sensorNumber": 31,
+    "sensorName": "TEMP MX",
+    "sensorDescription": "TEMPERATURE, AIR MAXIMUM",
+    "units": "DEG F"
+  },
+  {
+    "sensorNumber": 32,
+    "sensorName": "TEMP MN",
+    "sensorDescription": "TEMPERATURE, AIR MINIMUM",
+    "units": "DEG F"
+  },
+  {
+    "sensorNumber": 33,
+    "sensorName": "VAPR AV",
+    "sensorDescription": "VAPOR PRESSURE, AVERAGE",
+    "units": "INCHES"
+  },
+  {
+    "sensorNumber": 34,
+    "sensorName": "VAPR MX",
+    "sensorDescription": "VAPOR PRESSURE, MAXIMUM",
+    "units": "INCHES"
+  },
+  {
+    "sensorNumber": 35,
+    "sensorName": "VAPR MN",
+    "sensorDescription": "VAPOR PRESSURE, MINIMUM",
+    "units": "INCHES"
+  },
+  {
+    "sensorNumber": 36,
+    "sensorName": "DEW PT",
+    "sensorDescription": "TEMPERATURE, DEW POINT",
+    "units": "DEG F"
+  },
+  {
+    "sensorNumber": 37,
+    "sensorName": "DEW DUR",
+    "sensorDescription": "DEW DURATION",
+    "units": "HOURS"
+  },
+  {
+    "sensorNumber": 38,
+    "sensorName": "SOIL AV",
+    "sensorDescription": "TEMPERATURE, SOIL AVERAGE",
+    "units": "DEG F"
+  },
+  {
+    "sensorNumber": 39,
+    "sensorName": "SOIL MX",
+    "sensorDescription": "TEMPERATURE, SOIL MAXIMUM",
+    "units": "DEG F"
+  },
+  {
+    "sensorNumber": 40,
+    "sensorName": "SOIL MN",
+    "sensorDescription": "TEMPERATURE, SOIL MINIMUM",
+    "units": "DEG F"
+  },
+  {
+    "sensorNumber": 41,
+    "sensorName": "M FLOW",
+    "sensorDescription": "FLOW, MEAN DAILY",
+    "units": "CFS"
+  },
+  {
+    "sensorNumber": 42,
+    "sensorName": "LAKE EL",
+    "sensorDescription": "ELEVATION, NATURAL LAKE",
+    "units": "FEET"
+  },
+  {
+    "sensorNumber": 43,
+    "sensorName": "RES EL",
+    "sensorDescription": "POOL ELEVATION",
+    "units": "FEET"
+  },
+  {
+    "sensorNumber": 44,
+    "sensorName": "FREZ EL",
+    "sensorDescription": "FREEZING LEVEL ELEVATION",
+    "units": "FEET"
+  },
+  {
+    "sensorNumber": 45,
+    "sensorName": "PPT INC",
+    "sensorDescription": "PRECIPITATION, INCREMENTAL",
+    "units": "INCHES"
+  },
+  {
+    "sensorNumber": 46,
+    "sensorName": "RUNOFF",
+    "sensorDescription": "RUNOFF VOLUME",
+    "units": "AF"
+  },
+  {
+    "sensorNumber": 47,
+    "sensorName": "ACCM WD",
+    "sensorDescription": "WIND, ACCUM WIND TRAVEL",
+    "units": "MILES"
+  },
+  {
+    "sensorNumber": 48,
+    "sensorName": "DIS PWR",
+    "sensorDescription": "DISCHARGE, POWER GENERATION",
+    "units": "CFS"
+  },
+  {
+    "sensorNumber": 49,
+    "sensorName": "DIR WTR",
+    "sensorDescription": "FLOW DIRECTION",
+    "units": "+  -"
+  },
+  {
+    "sensorNumber": 50,
+    "sensorName": "SNO INC",
+    "sensorDescription": "SNOW, ACT. INCREMENT",
+    "units": "INCHES"
+  },
+  {
+    "sensorNumber": 51,
+    "sensorName": "SNOW DEN",
+    "sensorDescription": "SNOW DENSITY",
+    "units": "%"
+  },
+  {
+    "sensorNumber": 52,
+    "sensorName": "SOIL TP",
+    "sensorDescription": "TEMPERATURE, SOIL",
+    "units": "DEG F"
+  },
+  {
+    "sensorNumber": 53,
+    "sensorName": "ICE STA",
+    "sensorDescription": "ICE FAIL STATUS",
+    "units": "."
+  },
+  {
+    "sensorNumber": 54,
+    "sensorName": "ICE TRP",
+    "sensorDescription": "ICE TIPS",
+    "units": "TIPS"
+  },
+  {
+    "sensorNumber": 55,
+    "sensorName": "ENER TOT",
+    "sensorDescription": "GENERATION, ENERGY TOTAL",
+    "units": "MWH"
+  },
+  {
+    "sensorNumber": 56,
+    "sensorName": "PUMP USE",
+    "sensorDescription": "GENERATION, PUMPING USE-POWER",
+    "units": "MW"
+  },
+  {
+    "sensorNumber": 57,
+    "sensorName": "PUMP USE",
+    "sensorDescription": "GENERATION, PUMPING USE-ENERGY",
+    "units": "MWH"
+  },
+  {
+    "sensorNumber": 58,
+    "sensorName": "STA LOAD",
+    "sensorDescription": "GENERATION, STATION LOAD-ENERG",
+    "units": "MWH"
+  },
+  {
+    "sensorNumber": 59,
+    "sensorName": "PWR TOT",
+    "sensorDescription": "GENERATION, POWER TOTAL",
+    "units": "MW"
+  },
+  {
+    "sensorNumber": 60,
+    "sensorName": "STA LOAD",
+    "sensorDescription": "GENERATION, STATION LOAD-POWER",
+    "units": "MW"
+  },
+  {
+    "sensorNumber": 61,
+    "sensorName": "DIS OXY",
+    "sensorDescription": "WATER, DISSOLVED OXYGEN",
+    "units": "MG/L"
+  },
+  {
+    "sensorNumber": 62,
+    "sensorName": "PH VAL",
+    "sensorDescription": "WATER, PH VALUE",
+    "units": "PH"
+  },
+  {
+    "sensorNumber": 63,
+    "sensorName": "DIS SOL",
+    "sensorDescription": "WATER, SUSPENDED SEDIMENT",
+    "units": "MG/L"
+  },
+  {
+    "sensorNumber": 64,
+    "sensorName": "EVP PAN",
+    "sensorDescription": "EVAPORATION,  PAN INCREMENT",
+    "units": "INCHES"
+  },
+  {
+    "sensorNumber": 65,
+    "sensorName": "MON FNF",
+    "sensorDescription": "FLOW, FULL NATURAL",
+    "units": "AF"
+  },
+  {
+    "sensorNumber": 66,
+    "sensorName": "MON FLO",
+    "sensorDescription": "FLOW, MONTHLY VOLUME",
+    "units": "AF"
+  },
+  {
+    "sensorNumber": 67,
+    "sensorName": "EST ACR",
+    "sensorDescription": "FLOW, ESTIMATED ACCRETIONS",
+    "units": "AF"
+  },
+  {
+    "sensorNumber": 68,
+    "sensorName": "LK EVAP",
+    "sensorDescription": "EVAPORATION, LAKE COMPUTED AF",
+    "units": "AF"
+  },
+  {
+    "sensorNumber": 69,
+    "sensorName": "DIVERSN",
+    "sensorDescription": "STORAGE, CANAL DIVERSION",
+    "units": "AF"
+  },
+  {
+    "sensorNumber": 70,
+    "sensorName": "DC PUMP",
+    "sensorDescription": "DISCHARGE, PUMPING",
+    "units": "CFS"
+  },
+  {
+    "sensorNumber": 71,
+    "sensorName": "SPILL",
+    "sensorDescription": "DISCHARGE, SPILLWAY",
+    "units": "CFS"
+  },
+  {
+    "sensorNumber": 72,
+    "sensorName": "IRR&CNS",
+    "sensorDescription": "FLOW, IRRIG&CONSUMPTION",
+    "units": "AF"
+  },
+  {
+    "sensorNumber": 73,
+    "sensorName": "AUX SNO",
+    "sensorDescription": "SNOW, AUXILIARY READING",
+    "units": "INCHES"
+  },
+  {
+    "sensorNumber": 74,
+    "sensorName": "EVAP",
+    "sensorDescription": "EVAPORATION, LAKE COMPUTED CFS",
+    "units": "CFS"
+  },
+  {
+    "sensorNumber": 75,
+    "sensorName": "SYN FLO",
+    "sensorDescription": "FLOW, SYNTHETIC",
+    "units": "CFS"
+  },
+  {
+    "sensorNumber": 76,
+    "sensorName": "INFLOW",
+    "sensorDescription": "RESERVOIR INFLOW",
+    "units": "CFS"
+  },
+  {
+    "sensorNumber": 77,
+    "sensorName": "PEAK WS",
+    "sensorDescription": "WIND, PEAK GUST",
+    "units": "MPH"
+  },
+  {
+    "sensorNumber": 78,
+    "sensorName": "PEAK WD",
+    "sensorDescription": "WIND, DIRECTION OF PEAK GUST",
+    "units": "DEG"
+  },
+  {
+    "sensorNumber": 79,
+    "sensorName": "SNO QUA",
+    "sensorDescription": "SNOW DATA QUALITY FLAG",
+    "units": "FLAG"
+  },
+  {
+    "sensorNumber": 80,
+    "sensorName": "PPT ADJ",
+    "sensorDescription": "PRECIPITATION, REVISED",
+    "units": "INCHES"
+  },
+  {
+    "sensorNumber": 81,
+    "sensorName": "PPT INX",
+    "sensorDescription": "PRECIPITATION INDEX",
+    "units": "%"
+  },
+  {
+    "sensorNumber": 82,
+    "sensorName": "SNO ADJ",
+    "sensorDescription": "SNOW, WATER CONTENT(REVISED)",
+    "units": "INCHES"
+  },
+  {
+    "sensorNumber": 83,
+    "sensorName": "SNX LOW",
+    "sensorDescription": "SNOW INDEX, LOW",
+    "units": "%"
+  },
+  {
+    "sensorNumber": 84,
+    "sensorName": "SNX HI",
+    "sensorDescription": "SNOW INDEX, HIGH",
+    "units": "%"
+  },
+  {
+    "sensorNumber": 85,
+    "sensorName": "RIV REL",
+    "sensorDescription": "DISCHARGE,CONTROL REGULATING",
+    "units": "CFS"
+  },
+  {
+    "sensorNumber": 86,
+    "sensorName": "DEPTH",
+    "sensorDescription": "SNOW DEPTH, CONTROL",
+    "units": "INCHES"
+  },
+  {
+    "sensorNumber": 87,
+    "sensorName": "SWE",
+    "sensorDescription": "SNOW WC, CONTROL",
+    "units": "INCHES"
+  },
+  {
+    "sensorNumber": 88,
+    "sensorName": "SNO MAN",
+    "sensorDescription": "SNOW, MANOMETER",
+    "units": "INCHES"
+  },
+  {
+    "sensorNumber": 89,
+    "sensorName": "PPT MAN",
+    "sensorDescription": "PRECIPITATION, MANOMETER",
+    "units": "INCHES"
+  },
+  {
+    "sensorNumber": 90,
+    "sensorName": "FN ELEV",
+    "sensorDescription": "HEIGHT, LAKE ABV SPEC DATUM",
+    "units": "FEET"
+  },
+  {
+    "sensorNumber": 91,
+    "sensorName": "AVG INF",
+    "sensorDescription": "RESERVOIR INFLOW-LAST 6HR AVG",
+    "units": "CFS"
+  },
+  {
+    "sensorNumber": 92,
+    "sensorName": "EL CONDB",
+    "sensorDescription": "ELECTRICAL COND BOTTOM MILLI S",
+    "units": "mS/cm"
+  },
+  {
+    "sensorNumber": 93,
+    "sensorName": "WINDLEN",
+    "sensorDescription": "WIND, TRAVEL LENGTH",
+    "units": "MILES"
+  },
+  {
+    "sensorNumber": 94,
+    "sensorName": "TOC STO",
+    "sensorDescription": "RESERVOIR, TOP CONSERV STORAGE",
+    "units": "AF"
+  },
+  {
+    "sensorNumber": 95,
+    "sensorName": "CB ELEV",
+    "sensorDescription": "CREEK BED ELEV FROM MEAN SEA L",
+    "units": "FEET"
+  },
+  {
+    "sensorNumber": 96,
+    "sensorName": "FTEMPVL",
+    "sensorDescription": "FIELD GAMMA TEMP VOLTAGE",
+    "units": "ml VOL"
+  },
+  {
+    "sensorNumber": 97,
+    "sensorName": "RTEMPVL",
+    "sensorDescription": "REF GAMMA TEMP VOLTAGE",
+    "units": "ml VOL"
+  },
+  {
+    "sensorNumber": 98,
+    "sensorName": "FGAMRVL",
+    "sensorDescription": "FIELD GAMMA VOLTAGE",
+    "units": "ml VOL"
+  },
+  {
+    "sensorNumber": 99,
+    "sensorName": "RGAMRVL",
+    "sensorDescription": "REF GAMMA VOLTAGE",
+    "units": "ml VOL"
+  },
+  {
+    "sensorNumber": 100,
+    "sensorName": "EL COND",
+    "sensorDescription": "ELECTRICAL CONDUCTIVTY MICRO S",
+    "units": "uS/cm"
+  },
+  {
+    "sensorNumber": 101,
+    "sensorName": "T ORG C",
+    "sensorDescription": "TOTAL ORG. CARBON, OXIDATION",
+    "units": "mg/L"
+  },
+  {
+    "sensorNumber": 102,
+    "sensorName": "EL CONDB",
+    "sensorDescription": "ELECTRICAL COND BOTTOM MICRO S",
+    "units": "uS/cm"
+  },
+  {
+    "sensorNumber": 103,
+    "sensorName": "SLRR AV",
+    "sensorDescription": "SOLAR RADIATION AVG",
+    "units": "W/M^2"
+  },
+  {
+    "sensorNumber": 104,
+    "sensorName": "SLRR MN",
+    "sensorDescription": "SOLAR RADIATION MIN",
+    "units": "W/M^2"
+  },
+  {
+    "sensorNumber": 105,
+    "sensorName": "SLRR MX",
+    "sensorDescription": "SOLAR RADIATION MAX",
+    "units": "W/M^2"
+  },
+  {
+    "sensorNumber": 106,
+    "sensorName": "NSLR AV",
+    "sensorDescription": "NET SOLAR RADIATION AVG",
+    "units": "W/M^2"
+  },
+  {
+    "sensorNumber": 107,
+    "sensorName": "NSLR MN",
+    "sensorDescription": "NET SOLAR RADIATION MIN",
+    "units": "W/M^2"
+  },
+  {
+    "sensorNumber": 108,
+    "sensorName": "NSLR MX",
+    "sensorDescription": "NET SOLAR RADIATION MAX",
+    "units": "W/M^2"
+  },
+  {
+    "sensorNumber": 109,
+    "sensorName": "D ORGCZ",
+    "sensorDescription": "DISSOLVED ORG. CARBON, COMBUST",
+    "units": "mg/L"
+  },
+  {
+    "sensorNumber": 110,
+    "sensorName": "DIVERSN",
+    "sensorDescription": "FLOW, CANAL DIVERSION",
+    "units": "CFS"
+  },
+  {
+    "sensorNumber": 111,
+    "sensorName": "IRR&CNS",
+    "sensorDescription": "FLOW, IRRIG&CONSUMPTION",
+    "units": "CFS"
+  },
+  {
+    "sensorNumber": 112,
+    "sensorName": "T ORGCZ",
+    "sensorDescription": "TOTAL ORG. CARBON, COMBUSTION",
+    "units": "mg/L"
+  },
+  {
+    "sensorNumber": 113,
+    "sensorName": "UVA 254",
+    "sensorDescription": "ULTRA VIOLET 254 NANO METERS",
+    "units": "U/CM"
+  },
+  {
+    "sensorNumber": 114,
+    "sensorName": "FLUORO",
+    "sensorDescription": "FLUORESCES N RHODAMINE/CHLOROP",
+    "units": "FLUORO"
+  },
+  {
+    "sensorNumber": 115,
+    "sensorName": "BAT VOLA",
+    "sensorDescription": "BATTERY VOLTAGE AUX",
+    "units": "VOLTS"
+  },
+  {
+    "sensorNumber": 116,
+    "sensorName": "IRR AVG",
+    "sensorDescription": "IRRADIANCE AVERAGE",
+    "units": "W/M^2"
+  },
+  {
+    "sensorNumber": 117,
+    "sensorName": "IRR MIN",
+    "sensorDescription": "IRRADIANCE MINIMUM",
+    "units": "W/M^2"
+  },
+  {
+    "sensorNumber": 118,
+    "sensorName": "IRR MAX",
+    "sensorDescription": "IRRADIANCE MAXIMUM",
+    "units": "W/M^2"
+  },
+  {
+    "sensorNumber": 119,
+    "sensorName": "RIRR AV",
+    "sensorDescription": "REFLECTED IRRADIANCE AVG",
+    "units": "W/M^2"
+  },
+  {
+    "sensorNumber": 120,
+    "sensorName": "RIRR MN",
+    "sensorDescription": "REFLECTED IRRADIANCE MIN",
+    "units": "W/M^2"
+  },
+  {
+    "sensorNumber": 121,
+    "sensorName": "RIRR MX",
+    "sensorDescription": "REFLECTED IRRADIANCE MAX",
+    "units": "W/M^2"
+  },
+  {
+    "sensorNumber": 122,
+    "sensorName": "SOIL MOI",
+    "sensorDescription": "SOIL MOISTURE",
+    "units": "%"
+  },
+  {
+    "sensorNumber": 123,
+    "sensorName": "BARP MX",
+    "sensorDescription": "BAROMETRIC PRESSURE, MAX",
+    "units": "INCHES"
+  },
+  {
+    "sensorNumber": 124,
+    "sensorName": "BARP MN",
+    "sensorDescription": "BAROMETRIC PRESSURE, MIN",
+    "units": "INCHES"
+  },
+  {
+    "sensorNumber": 125,
+    "sensorName": "SLRR TL",
+    "sensorDescription": "TOTAL SOLAR RADIATION",
+    "units": "CAL"
+  },
+  {
+    "sensorNumber": 126,
+    "sensorName": "RELHMAV",
+    "sensorDescription": "RELATIVE HUMIDITY, AVG",
+    "units": "%"
+  },
+  {
+    "sensorNumber": 127,
+    "sensorName": "RELHMMX",
+    "sensorDescription": "RELATIVE HUMIDITY, MAX",
+    "units": "%"
+  },
+  {
+    "sensorNumber": 128,
+    "sensorName": "RELHMMN",
+    "sensorDescription": "RELATIVE HUMIDITY, MIN",
+    "units": "%"
+  },
+  {
+    "sensorNumber": 129,
+    "sensorName": "VP AVG",
+    "sensorDescription": "VAPOR PRESSURE, AVG",
+    "units": "MILLIB"
+  },
+  {
+    "sensorNumber": 130,
+    "sensorName": "VP MAX",
+    "sensorDescription": "VAPOR PRESSURE, MAX",
+    "units": "MILLIB"
+  },
+  {
+    "sensorNumber": 131,
+    "sensorName": "VP MIN",
+    "sensorDescription": "VAPOR PRESSURE, MIN",
+    "units": "MILLIB"
+  },
+  {
+    "sensorNumber": 132,
+    "sensorName": "VP PRES",
+    "sensorDescription": "VAPOR PRESSURE",
+    "units": "MILLIB"
+  },
+  {
+    "sensorNumber": 133,
+    "sensorName": "MIN WS",
+    "sensorDescription": "WIND, SPEED MIN",
+    "units": "MPH"
+  },
+  {
+    "sensorNumber": 134,
+    "sensorName": "AVG WS",
+    "sensorDescription": "WIND, SPEED AVG",
+    "units": "MPH"
+  },
+  {
+    "sensorNumber": 135,
+    "sensorName": "REL ALT",
+    "sensorDescription": "RESERVOIR,SCHED REL ALT",
+    "units": "CFS"
+  },
+  {
+    "sensorNumber": 136,
+    "sensorName": "REL CAN",
+    "sensorDescription": "RESERVOIR,SCHED REL CAND",
+    "units": "CFS"
+  },
+  {
+    "sensorNumber": 138,
+    "sensorName": "FLWALTA",
+    "sensorDescription": "FLOW, COMPUTED ALT A",
+    "units": "CFS"
+  },
+  {
+    "sensorNumber": 139,
+    "sensorName": "FLWALTB",
+    "sensorDescription": "FLOW, COMPUTED ALT B",
+    "units": "CFS"
+  },
+  {
+    "sensorNumber": 140,
+    "sensorName": "FLWALTC",
+    "sensorDescription": "FLOW, COMPUTED ALT C",
+    "units": "CFS"
+  },
+  {
+    "sensorNumber": 141,
+    "sensorName": "RIVST88",
+    "sensorDescription": "RIVER STAGE NAVD88",
+    "units": "FEET"
+  },
+  {
+    "sensorNumber": 142,
+    "sensorName": "INSFLOW",
+    "sensorDescription": "INSTANTANEOUS FLOW",
+    "units": "CFS"
+  },
+  {
+    "sensorNumber": 143,
+    "sensorName": "OBSFLOW",
+    "sensorDescription": "OBSERVED FLOW",
+    "units": "CFS"
+  },
+  {
+    "sensorNumber": 144,
+    "sensorName": "RIVST29",
+    "sensorDescription": "RIVER STAGE NGVD29",
+    "units": "FEET"
+  },
+  {
+    "sensorNumber": 145,
+    "sensorName": "DAILYX2",
+    "sensorDescription": "X2, DAILY CALCULATION",
+    "units": "KM"
+  },
+  {
+    "sensorNumber": 146,
+    "sensorName": "TEMPW C",
+    "sensorDescription": "TEMPERATURE, WATER C",
+    "units": "DEG C"
+  },
+  {
+    "sensorNumber": 147,
+    "sensorName": "SNOWDP2",
+    "sensorDescription": "SNOW DEPTH AUX",
+    "units": "INCHES"
+  },
+  {
+    "sensorNumber": 148,
+    "sensorName": "Diss Cl",
+    "sensorDescription": "WATER, DISSOLVED CHLORIDE, Cl",
+    "units": "mg/L"
+  },
+  {
+    "sensorNumber": 149,
+    "sensorName": "Diss Br",
+    "sensorDescription": "WATER, DISSOLVED BROMIDE, Br",
+    "units": "mg/L"
+  },
+  {
+    "sensorNumber": 150,
+    "sensorName": "DissNO3",
+    "sensorDescription": "WATER, DISSOLVED NITRATE, NO3",
+    "units": "mg/L"
+  },
+  {
+    "sensorNumber": 151,
+    "sensorName": "DissPO4",
+    "sensorDescription": "WATER, DISSOLVED PHOSPHATE,PO4",
+    "units": "mg/L"
+  },
+  {
+    "sensorNumber": 152,
+    "sensorName": "DissSO4",
+    "sensorDescription": "WATER, DISSOLVED SULPHATE, SO4",
+    "units": "mg/L"
+  },
+  {
+    "sensorNumber": 153,
+    "sensorName": "Diss F",
+    "sensorDescription": "WATER, DISSOLVED FLUORIDE, F",
+    "units": "mg/L"
+  },
+  {
+    "sensorNumber": 154,
+    "sensorName": "TEMPIDX",
+    "sensorDescription": "TEMPERATURE INDEX",
+    "units": "DEG F"
+  },
+  {
+    "sensorNumber": 155,
+    "sensorName": "D RUNOFF",
+    "sensorDescription": "DELTA RUNOFF 1 DAY CALCULATION",
+    "units": "CFS"
+  },
+  {
+    "sensorNumber": 156,
+    "sensorName": "STOALTA",
+    "sensorDescription": "STORAGE, SIMULATED ALT A",
+    "units": "AF"
+  },
+  {
+    "sensorNumber": 157,
+    "sensorName": "STOALTB",
+    "sensorDescription": "STORAGE, SIMULATED ALT B",
+    "units": "AF"
+  },
+  {
+    "sensorNumber": 158,
+    "sensorName": "STOALTC",
+    "sensorDescription": "STORAGE, SIMULATED ALT C",
+    "units": "AF"
+  },
+  {
+    "sensorNumber": 159,
+    "sensorName": "FTOCSTO",
+    "sensorDescription": "RES, FORECASTED TOP CONS STOR",
+    "units": "AF"
+  },
+  {
+    "sensorNumber": 160,
+    "sensorName": "FORWETN",
+    "sensorDescription": "WETNESS INDEX, FORECASTED",
+    "units": "."
+  },
+  {
+    "sensorNumber": 161,
+    "sensorName": "FORWETS",
+    "sensorDescription": "WETNESS INDEX, SUM AVG FCST",
+    "units": "INCHES"
+  },
+  {
+    "sensorNumber": 162,
+    "sensorName": "FTOCELV",
+    "sensorDescription": "RES, FORECASTED TOP CONS ELEV",
+    "units": "FEET"
+  },
+  {
+    "sensorNumber": 163,
+    "sensorName": "D ORGCA",
+    "sensorDescription": "DISSLVD ORG CARBON, ABSORPTION",
+    "units": "mg/L"
+  },
+  {
+    "sensorNumber": 164,
+    "sensorName": "ON/OFF",
+    "sensorDescription": "CONTROL SWITCH, 0-OFF, 1-ON",
+    "units": "ON/OFF"
+  },
+  {
+    "sensorNumber": 165,
+    "sensorName": "FLOW.XX",
+    "sensorDescription": "FLOW, RIVER DISCHARGE PRECISE",
+    "units": "CFS.XX"
+  },
+  {
+    "sensorNumber": 166,
+    "sensorName": "ESRD C",
+    "sensorDescription": "ESRD Candidate release",
+    "units": "CFS"
+  },
+  {
+    "sensorNumber": 167,
+    "sensorName": "ESRD P",
+    "sensorDescription": "ESRD Projected release",
+    "units": "CFS"
+  },
+  {
+    "sensorNumber": 168,
+    "sensorName": "ESRD A",
+    "sensorDescription": "ESRD Alternative release",
+    "units": "CFS"
+  },
+  {
+    "sensorNumber": 169,
+    "sensorName": "STAGE F",
+    "sensorDescription": "FORECASTED STAGE",
+    "units": "FEET"
+  },
+  {
+    "sensorNumber": 170,
+    "sensorName": "DEPTH B",
+    "sensorDescription": "DEPTH OF READING BLW SURFACE",
+    "units": "FEET"
+  },
+  {
+    "sensorNumber": 171,
+    "sensorName": "10dayQ",
+    "sensorDescription": "TEN DAY MEAN FLOW",
+    "units": "CFS"
+  },
+  {
+    "sensorNumber": 172,
+    "sensorName": "%Q",
+    "sensorDescription": "ROTATION RT DIVERTIBLE FLOW",
+    "units": "%"
+  },
+  {
+    "sensorNumber": 173,
+    "sensorName": "1day%Q",
+    "sensorDescription": "ROTATION ONE DAY MEAN FLOW",
+    "units": "%"
+  },
+  {
+    "sensorNumber": 174,
+    "sensorName": "10day%Q",
+    "sensorDescription": "ROTATION TEN DAY MEAN FLOW",
+    "units": "%"
+  },
+  {
+    "sensorNumber": 175,
+    "sensorName": "EVAP RAT",
+    "sensorDescription": "EVAPORATION RATE",
+    "units": "IN/DAY"
+  },
+  {
+    "sensorNumber": 176,
+    "sensorName": "ELEV TW",
+    "sensorDescription": "ELEVATION PROJ TAIL WATER STG",
+    "units": "FEET"
+  },
+  {
+    "sensorNumber": 177,
+    "sensorName": "TIDE HT",
+    "sensorDescription": "HEIGHT OF TIDE",
+    "units": "FEET"
+  },
+  {
+    "sensorNumber": 178,
+    "sensorName": "HEAD HT",
+    "sensorDescription": "HEIGHT, HEAD",
+    "units": "FEET"
+  },
+  {
+    "sensorNumber": 179,
+    "sensorName": "D ORGCO",
+    "sensorDescription": "DISSLVD ORG. CARBON, OXIDATION",
+    "units": "mg/L"
+  },
+  {
+    "sensorNumber": 180,
+    "sensorName": "ELVALTA",
+    "sensorDescription": "POOL ELEV, SIMULATED ALT A",
+    "units": "FEET"
+  },
+  {
+    "sensorNumber": 181,
+    "sensorName": "ELVALTA",
+    "sensorDescription": "POOL ELEV, SIMULATED ALT B",
+    "units": "FEET"
+  },
+  {
+    "sensorNumber": 182,
+    "sensorName": "ELVALTA",
+    "sensorDescription": "POOL ELEV, SIMULATED ALT C",
+    "units": "FEET"
+  },
+  {
+    "sensorNumber": 183,
+    "sensorName": "RORALTA",
+    "sensorDescription": "RATE OF RISE ELEV, SIM ALT A",
+    "units": "FT/HR"
+  },
+  {
+    "sensorNumber": 184,
+    "sensorName": "RORALTB",
+    "sensorDescription": "RATE OF RISE ELEV, SIM ALT B",
+    "units": "FT/HR"
+  },
+  {
+    "sensorNumber": 185,
+    "sensorName": "RORALTC",
+    "sensorDescription": "RATE OF RISE ELEV, SIM ALT C",
+    "units": "FT/HR"
+  },
+  {
+    "sensorNumber": 186,
+    "sensorName": "DP2W1",
+    "sensorDescription": "GRND WTR DEPTH BELOW WATER 1",
+    "units": "FEET"
+  },
+  {
+    "sensorNumber": 187,
+    "sensorName": "DP2W2",
+    "sensorDescription": "GRND WTR DEPTH BELOW WATER 2",
+    "units": "FEET"
+  },
+  {
+    "sensorNumber": 188,
+    "sensorName": "DP2W3",
+    "sensorDescription": "GRND WTR DEPTH BELOW WATER 3",
+    "units": "FEET"
+  },
+  {
+    "sensorNumber": 189,
+    "sensorName": "DP2W4",
+    "sensorDescription": "GRND WTR DEPTH BELOW WATER 4",
+    "units": "FEET"
+  },
+  {
+    "sensorNumber": 190,
+    "sensorName": "GWTEMP1",
+    "sensorDescription": "GRND WTR WATER TEMP 1",
+    "units": "DEG F"
+  },
+  {
+    "sensorNumber": 191,
+    "sensorName": "GWTEMP2",
+    "sensorDescription": "GRND WTR WATER TEMP 2",
+    "units": "DEG F"
+  },
+  {
+    "sensorNumber": 192,
+    "sensorName": "GWTEMP3",
+    "sensorDescription": "GRND WTR WATER TEMP 3",
+    "units": "DEG F"
+  },
+  {
+    "sensorNumber": 193,
+    "sensorName": "GWTEMP4",
+    "sensorDescription": "GRND WTR WATER TEMP 4",
+    "units": "DEG F"
+  },
+  {
+    "sensorNumber": 194,
+    "sensorName": "SOILTD1",
+    "sensorDescription": "SOIL TEMP, DEPTH 1",
+    "units": "DEG F"
+  },
+  {
+    "sensorNumber": 195,
+    "sensorName": "SOILTD2",
+    "sensorDescription": "SOIL TEMP, DEPTH 2",
+    "units": "DEG F"
+  },
+  {
+    "sensorNumber": 196,
+    "sensorName": "SOILTD3",
+    "sensorDescription": "SOIL TEMP, DEPTH 3",
+    "units": "DEG F"
+  },
+  {
+    "sensorNumber": 197,
+    "sensorName": "SOILMD1",
+    "sensorDescription": "SOIL MOISTR, DEPTH 1",
+    "units": "%"
+  },
+  {
+    "sensorNumber": 198,
+    "sensorName": "SOILMD2",
+    "sensorDescription": "SOIL MOISTR, DEPTH 2",
+    "units": "%"
+  },
+  {
+    "sensorNumber": 199,
+    "sensorName": "SOILMD3",
+    "sensorDescription": "SOIL MOISTR, DEPTH 3",
+    "units": "%"
+  },
+  {
+    "sensorNumber": 200,
+    "sensorName": "ABV TOC",
+    "sensorDescription": "RES, ABV TOP OF CONSERV STOR",
+    "units": "AF"
+  },
+  {
+    "sensorNumber": 201,
+    "sensorName": "DOXY 3M",
+    "sensorDescription": "WATER, DISS OXYGEN 3 METERS",
+    "units": "MG/L"
+  },
+  {
+    "sensorNumber": 202,
+    "sensorName": "DOXY 6M",
+    "sensorDescription": "WATER, DISS OXYGEN 6 METERS",
+    "units": "MG/L"
+  },
+  {
+    "sensorNumber": 203,
+    "sensorName": "PPTINC4",
+    "sensorDescription": "PRECIPITATION, INCRMNT 4A-4A",
+    "units": "INCHES"
+  },
+  {
+    "sensorNumber": 204,
+    "sensorName": "RIVSTGA",
+    "sensorDescription": "RIVER STAGE, AUX.",
+    "units": "FEET"
+  },
+  {
+    "sensorNumber": 205,
+    "sensorName": "QPF 6HR",
+    "sensorDescription": "QPF, 6 HOUR INCREMENT",
+    "units": "INCHES"
+  },
+  {
+    "sensorNumber": 206,
+    "sensorName": "QPF12HR",
+    "sensorDescription": "QPF, 12 HOUR INCREMENT",
+    "units": "INCHES"
+  },
+  {
+    "sensorNumber": 207,
+    "sensorName": "QPF 1DY",
+    "sensorDescription": "QPF, DAILY INCREMENT",
+    "units": "INCHES"
+  },
+  {
+    "sensorNumber": 208,
+    "sensorName": "TURBVAR",
+    "sensorDescription": "WATER, TURBIDITY VARIANCE",
+    "units": "NTU"
+  },
+  {
+    "sensorNumber": 209,
+    "sensorName": "AUXPREC",
+    "sensorDescription": "PRECIPITATION AUX",
+    "units": "INCHES"
+  },
+  {
+    "sensorNumber": 210,
+    "sensorName": "AUXFLOW",
+    "sensorDescription": "FLOW AUX",
+    "units": "CFS"
+  }
+]
