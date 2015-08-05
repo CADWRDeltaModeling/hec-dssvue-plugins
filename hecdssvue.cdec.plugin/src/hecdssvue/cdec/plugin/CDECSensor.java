@@ -11,6 +11,7 @@ public class CDECSensor {
 	private String dataCollection;
 	private String dataAvailable;
 	private String stationId;
+	private String moleculeType;
 
 	public CDECSensor(String id){
 		setId(id);
@@ -107,5 +108,13 @@ public class CDECSensor {
 	@Override
 	public int hashCode() {
 		return stationId.hashCode() + id.hashCode() + type.hashCode() + subType.hashCode() + units.hashCode() + duration.hashCode();
+	}
+
+	public void setMoleculeType(String moleculeType) {
+		this.moleculeType = moleculeType;
+	}
+
+	public String getMoleculeType() {
+		return moleculeType;
 	}
 }

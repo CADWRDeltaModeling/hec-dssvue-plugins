@@ -126,20 +126,18 @@ public class CDECStationWebService {
 					sensorCols[2])[0];
 			CDECSensor sensor = new CDECSensor(sensorId);
 			sensors.add(sensor);
-			String[] fields = sensorCols[0].replaceAll("<b>", "")
-					.replaceAll("</b>", "").split(",");
-
-			sensor.setType(fields.length >= 1 ? fields[0].trim() : "");
-			if (fields.length == 2) {
+			String typeSubTypeString= sensorCols[0].replaceAll("<b>", "")
+					.replaceAll("</b>", "");
+			int commaIndex = typeSubTypeString.indexOf(",");
+			int lastCommaIndex = typeSubTypeString.lastIndexOf(",");
+			sensor.setType(typeSubTypeString.substring(0, commaIndex < 0 ? typeSubTypeString.length() : commaIndex));
+			if (lastCommaIndex == commaIndex){
 				sensor.setSubType("");
-				sensor.setUnits(fields[1].trim());
-			} else if (fields.length == 3) {
-				sensor.setSubType(fields[1].trim());
-				sensor.setUnits(fields[2].trim());
 			} else {
-				sensor.setSubType("");
-				sensor.setUnits("");
+				sensor.setSubType(typeSubTypeString.substring(commaIndex+1,lastCommaIndex).trim());
 			}
+			sensor.setUnits(typeSubTypeString.substring(lastCommaIndex+1).trim());
+			
 			sensor.setDuration(Utils.getTagContents("a", sensorCols[1])[0]
 					.trim());
 			sensor.setPlot(sensorCols[2].trim());

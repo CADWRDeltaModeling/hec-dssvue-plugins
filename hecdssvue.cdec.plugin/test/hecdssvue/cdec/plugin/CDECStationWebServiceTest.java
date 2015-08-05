@@ -44,4 +44,16 @@ public class CDECStationWebServiceTest extends TestCase {
 		}
 
 	}
+
+	public void testRetrieveStationMetaData() throws Exception {
+		CDECStationWebService service = new CDECStationWebService();
+		CDECStation horStation = new CDECStation("HRO");
+		CDECStation horStationWithMeta = service.retrieveStationMetadata(horStation);
+		for(CDECSensor sensor: horStationWithMeta.getSensors()){
+			System.out.println(sensor.getType()+"::"+sensor.getSubType()+"::"+sensor.getUnits());
+			
+		}
+		
+		
+	}
 }
