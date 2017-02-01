@@ -5,6 +5,9 @@ import hec.hecmath.TimeSeriesMath;
 import hec.io.TimeSeriesContainer;
 import hecdssvue.cdec.plugin.CDECStationWebService.CDECSensorDataDownloadTask.MergedData;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.StringReader;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -42,14 +45,12 @@ public class CDECStationWebService {
 	}
 
 	protected List<CDECStation> fetchDailyStations() throws Exception {
-		String data = Utils.fetchDataInUrl(CDEC_BASE_URL
-				+ "/misc/dailyStations.html");
+		String data = Utils.fetchDataInUrl(CDEC_BASE_URL + "/misc/dailyStations.html");
 		return findStations(data);
 	}
 
 	protected List<CDECStation> fetchRealtimeStations() throws Exception {
-		String data = Utils.fetchDataInUrl(CDEC_BASE_URL
-				+ "/misc/realStations.html");
+		String data = Utils.fetchDataInUrl(CDEC_BASE_URL + "/misc/realStations.html");
 		return findStations(data);
 	}
 
@@ -75,8 +76,7 @@ public class CDECStationWebService {
 
 	public List<CDECSensorDef> retrieveSensorDefs() throws Exception {
 		List<CDECSensorDef> defs = new ArrayList<CDECSensorDef>();
-		String data = Utils.fetchDataInUrl(CDEC_BASE_URL
-				+ "/misc/senslist.html");
+		String data = Utils.fetchDataInUrl(CDEC_BASE_URL + "/misc/senslist.html");
 		String table = Utils.getTagContents("table", data)[0];
 		String[] rows = Utils.getTagContents("tr", table);
 
@@ -100,91 +100,90 @@ public class CDECStationWebService {
 	 * @param station
 	 * @throws Exception
 	 */
-	public CDECStation retrieveStationMetadata(CDECStation station)
-			throws Exception {
-		String data = Utils.fetchDataInUrl(CDEC_BASE_URL
-				+ "/cgi-progs/stationInfo?station_id=" + station.getId());
-		String table = Utils.getTagContents("table", data)[0];
-		String[] rows = Utils.getTagContents("tr", table);
-		// check station id
+	public CDECStation retrieveStationMetadata(CDECStation station) throws Exception {
+		String data = Utils.fetchDataInUrl(CDEC_BASE_URL + "/cgi-progs/stationInfo?station_id=" + station.getId());
+		try {
+			String table = Utils.getTagContents("table", data)[0];
+			String[] rows = Utils.getTagContents("tr", table);
+			// check station id
 
-		station.setHydrologicArea(Utils.getTagContents("td", rows[2])[1].trim());
-		station.setNearbyCity(Utils.getTagContents("td", rows[2])[3].trim());
-		station.setOperator(Utils.getTagContents("td", rows[4])[1].trim());
-		station.setDataCollection(Utils.getTagContents("td", rows[4])[3].trim());
+			station.setHydrologicArea(Utils.getTagContents("td", rows[2])[1].trim());
+			station.setNearbyCity(Utils.getTagContents("td", rows[2])[3].trim());
+			station.setOperator(Utils.getTagContents("td", rows[4])[1].trim());
+			station.setDataCollection(Utils.getTagContents("td", rows[4])[3].trim());
 
-		String sensorTable = Utils.getTagContents("table", data)[1];
-		// check for additional peak of record table... & skip it for now
-		if (sensorTable.contains("Peak of Record")) {
-			sensorTable = Utils.getTagContents("table", data)[2];
-		}
-		String[] sensorRows = Utils.getTagContents("tr", sensorTable);
-		ArrayList<CDECSensor> sensors = new ArrayList<CDECSensor>();
-		for (String sensorRow : sensorRows) {
-			String[] sensorCols = Utils.getTagContents("td", sensorRow);
-			String sensorId = Utils.getAllMatches("sensor_no=(\\d+)",
-					sensorCols[2])[0];
-			CDECSensor sensor = new CDECSensor(sensorId);
-			sensors.add(sensor);
-			String typeSubTypeString= sensorCols[0].replaceAll("<b>", "")
-					.replaceAll("</b>", "");
-			int commaIndex = typeSubTypeString.indexOf(",");
-			int lastCommaIndex = typeSubTypeString.lastIndexOf(",");
-			sensor.setType(typeSubTypeString.substring(0, commaIndex < 0 ? typeSubTypeString.length() : commaIndex));
-			if (lastCommaIndex == commaIndex){
-				sensor.setSubType("");
-			} else {
-				sensor.setSubType(typeSubTypeString.substring(commaIndex+1,lastCommaIndex).trim());
+			String sensorTable = Utils.getTagContents("table", data)[1];
+			// check for additional peak of record table... & skip it for now
+			if (sensorTable.contains("Peak of Record")) {
+				sensorTable = Utils.getTagContents("table", data)[2];
 			}
-			sensor.setUnits(typeSubTypeString.substring(lastCommaIndex+1).trim());
-			
-			sensor.setDuration(Utils.getTagContents("a", sensorCols[1])[0]
-					.trim());
-			sensor.setPlot(sensorCols[2].trim());
-			sensor.setDataCollection(sensorCols[3].trim());
-			sensor.setDataAvailable(sensorCols[4].trim());
+			String[] sensorRows = Utils.getTagContents("tr", sensorTable);
+			ArrayList<CDECSensor> sensors = new ArrayList<CDECSensor>();
+			for (String sensorRow : sensorRows) {
+				String[] sensorCols = Utils.getTagContents("td", sensorRow);
+				String sensorId = Utils.getAllMatches("sensor_no=(\\d+)", sensorCols[3])[0];
+				CDECSensor sensor = new CDECSensor(sensorId);
+				sensors.add(sensor);
+				String typeSubTypeString = sensorCols[0].replaceAll("<b>", "").replaceAll("</b>", "");
+				int commaIndex = typeSubTypeString.indexOf(",");
+				int lastCommaIndex = typeSubTypeString.lastIndexOf(",");
+				sensor.setType(
+						typeSubTypeString.substring(0, commaIndex < 0 ? typeSubTypeString.length() : commaIndex));
+				if (lastCommaIndex == commaIndex) {
+					sensor.setSubType("");
+				} else {
+					sensor.setSubType(typeSubTypeString.substring(commaIndex + 1, lastCommaIndex).trim());
+				}
+				sensor.setUnits(typeSubTypeString.substring(lastCommaIndex + 1).trim());
+
+				sensor.setDuration(Utils.getTagContents("a", sensorCols[2])[0].trim());
+				sensor.setPlot(sensorCols[3].trim());
+				sensor.setDataCollection(sensorCols[4].trim());
+				sensor.setDataAvailable(sensorCols[5].trim());
+			}
+			station.setSensors(sensors);
+		} catch (Exception ex) {
+			/**
+			 * System.err.println("Could not parse station meta data for
+			 * "+station.getId()); File dataFile = new
+			 * File(station.getId()+"_data.html"); System.err.println("Find the
+			 * contents in this file: "+dataFile.getAbsolutePath());
+			 * BufferedWriter wr = new BufferedWriter(new
+			 * FileWriter(dataFile),4096); wr.write(data); wr.close();
+			 **/
+			throw (ex);
 		}
-		station.setSensors(sensors);
 		return station;
 	}
 
 	public static final SimpleDateFormat cdecDateFormat = new SimpleDateFormat("MM/dd/yyyy");
-	public static final SimpleDateFormat cdecQueryDateFormat = new SimpleDateFormat(
-			"yyyyMMdd");
+	public static final SimpleDateFormat cdecQueryDateFormat = new SimpleDateFormat("yyyyMMdd");
 	public static final SimpleDateFormat hecDateFormat = new SimpleDateFormat("ddMMMyyyy");
 
 	public HecTime createDateTime(String date, String time) {
 		try {
-			return new HecTime(hecDateFormat.format(cdecQueryDateFormat
-					.parse(date)), time);
+			return new HecTime(hecDateFormat.format(cdecQueryDateFormat.parse(date)), time);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			return new HecTime();
 		}
 	}
 
-	public TimeSeriesContainer retrieveData(CDECSensor sensor,
-			String startDate, String endDate) throws Exception {
+	public TimeSeriesContainer retrieveData(CDECSensor sensor, String startDate, String endDate) throws Exception {
 		// duration code always E (event). All other data seems to be processed
 		// from E duration e.g. hourly, daily etc.
 		String duration = sensor.getDuration();
 		String durationCode = DURATION_MAP.get(duration);
 		CDECSensorDef sensorDef = CDECSensorDefs.get().getDefFromDescription(
-				sensor.getType()
-						+ (sensor.getSubType().equals("") ? "" : ", "
-								+ sensor.getSubType()) + ", "
+				sensor.getType() + (sensor.getSubType().equals("") ? "" : ", " + sensor.getSubType()) + ", "
 						+ sensor.getUnits().toLowerCase());
 		if (sensorDef == null) {
-			System.out.println("Could not find sensor definition for "
-					+ sensor.getType()
-					+ (sensor.getSubType().equals("") ? "" : ", "
-							+ sensor.getSubType()) + ", "
+			System.out.println("Could not find sensor definition for " + sensor.getType()
+					+ (sensor.getSubType().equals("") ? "" : ", " + sensor.getSubType()) + ", "
 					+ sensor.getUnits().toLowerCase());
 		}
-		String url = "/cgi-progs/queryCSV?station_id=" + sensor.getStationId()
-				+ "&dur_code=" + durationCode + "&sensor_num="
-				+ sensorDef.getSensorNumber() + "&start_date=" + startDate
-				+ "&end_date=" + endDate;
+		String url = "/cgi-progs/queryCSV?station_id=" + sensor.getStationId() + "&dur_code=" + durationCode
+				+ "&sensor_num=" + sensorDef.getSensorNumber() + "&start_date=" + startDate + "&end_date=" + endDate;
 		String dataInUrl = Utils.fetchDataInUrl(CDEC_BASE_URL + url);
 		StringReader reader = new StringReader(dataInUrl);
 		CSVFormat format = CSVFormat.newFormat(',').withQuote('\'');
@@ -192,9 +191,8 @@ public class CDECStationWebService {
 		Iterator<CSVRecord> iterator = parser.iterator();
 		CSVRecord record = iterator.next(); // skip first line
 		if (!iterator.hasNext()) {
-			System.err.println("No data found for " + sensor.getType() + "@"
-					+ sensor.getStationId() + "->[" + startDate + " - "
-					+ endDate + "]");
+			System.err.println("No data found for " + sensor.getType() + "@" + sensor.getStationId() + "->[" + startDate
+					+ " - " + endDate + "]");
 			parser.close();
 			reader.close();
 			return null;
@@ -212,8 +210,7 @@ public class CDECStationWebService {
 			record = iterator.next();
 			HecTime time = createDateTime(record.get(0), record.get(1));
 			times.insertElementAt(time.value(), i);
-			double value = record.get(2).equals("m") ? -901.0 : Double
-					.parseDouble(record.get(2));
+			double value = record.get(2).equals("m") ? -901.0 : Double.parseDouble(record.get(2));
 			values.insertElementAt(value, i);
 			i++;
 		}
@@ -234,8 +231,7 @@ public class CDECStationWebService {
 		tsc.units = units;
 		tsc.parameter = dataType;
 		String epart = DSS_INTERVAL.get(duration);
-		tsc.fullName = "/CDEC/" + tsc.location + "/" + tsc.parameter + "//"
-				+ epart + "/" + sensor.getStationId() + "-"
+		tsc.fullName = "/CDEC/" + tsc.location + "/" + tsc.parameter + "//" + epart + "/" + sensor.getStationId() + "-"
 				+ sensorDef.getSensorName() + "-" + sensorId + "/";
 
 		return tsc;
@@ -250,7 +246,7 @@ public class CDECStationWebService {
 	 */
 	public TimeSeriesContainer retrieveSensorData(CDECSensor sensor, String timeWindow, Progress progress)
 			throws Exception {
-		if (timeWindow == null){
+		if (timeWindow == null) {
 			timeWindow = sensor.getDataAvailable();
 		}
 		String startDateStr = timeWindow.split("to")[0].trim();
@@ -265,8 +261,7 @@ public class CDECStationWebService {
 		// download a year at a time... except if hourly or event data then
 		// download monthly
 		int incrementField = Calendar.YEAR;
-		if (sensor.getDuration().equals("hourly")
-				|| sensor.getDuration().equals("event")) {
+		if (sensor.getDuration().equals("hourly") || sensor.getDuration().equals("event")) {
 			incrementField = Calendar.MONTH;
 		}
 		Calendar calendar = Calendar.getInstance();
@@ -276,10 +271,10 @@ public class CDECStationWebService {
 		ThreadPoolExecutor executorService = new ThreadPoolExecutor(20, 45, 0, TimeUnit.SECONDS, workQueue);
 		MergedData dataContainer = new MergedData();
 		// estimate total number of tasks
-		long timeInMillis = endDate.getTime()-startDate.getTime();
-		int totalNumberOfTasks = (int) (timeInMillis/(30*24*60*60*1000L));
-		if (incrementField == Calendar.YEAR){
-			totalNumberOfTasks = (int) (timeInMillis/(365*24*60*60*1000L));
+		long timeInMillis = endDate.getTime() - startDate.getTime();
+		int totalNumberOfTasks = (int) (timeInMillis / (30 * 24 * 60 * 60 * 1000L));
+		if (incrementField == Calendar.YEAR) {
+			totalNumberOfTasks = (int) (timeInMillis / (365 * 24 * 60 * 60 * 1000L));
 		}
 		progress.setTotalNumberOfTasks(totalNumberOfTasks);
 		progress.resetProgress();
@@ -290,15 +285,14 @@ public class CDECStationWebService {
 			if (currentEndDate.after(endDate)) {
 				currentEndDate = endDate;
 			}
-			System.out.println("Queuing task to download: "+currentStartDate+" -> "+currentEndDate);
+			System.out.println("Queuing task to download: " + currentStartDate + " -> " + currentEndDate);
 			// wait for tasks to finish
-			while (workQueue.remainingCapacity() == 0){
+			while (workQueue.remainingCapacity() == 0) {
 				Thread.sleep(1000);
 				System.out.println("Work Queue is full! Waiting");
 			}
-			executorService.execute(new CDECSensorDataDownloadTask(sensor,
-					cdecDateFormat.format(currentStartDate), cdecDateFormat
-							.format(currentEndDate), dataContainer, progress));
+			executorService.execute(new CDECSensorDataDownloadTask(sensor, cdecDateFormat.format(currentStartDate),
+					cdecDateFormat.format(currentEndDate), dataContainer, progress));
 
 			currentStartDate = currentEndDate;
 			if (currentEndDate.equals(endDate)) {
@@ -331,8 +325,8 @@ public class CDECStationWebService {
 		private MergedData mergedData;
 		private Progress progress;
 
-		public CDECSensorDataDownloadTask(CDECSensor sensor, String startDate,
-				String endDate, MergedData mergedData, Progress progress) {
+		public CDECSensorDataDownloadTask(CDECSensor sensor, String startDate, String endDate, MergedData mergedData,
+				Progress progress) {
 			this.sensor = sensor;
 			this.startDate = startDate;
 			this.endDate = endDate;
@@ -342,25 +336,21 @@ public class CDECStationWebService {
 
 		public void run() {
 			try {
-				TimeSeriesContainer currentData = new CDECStationWebService()
-						.retrieveData(sensor, startDate, endDate);
-				progress.setMessage("Downloading data for "
-						+ sensor.getStationId() + ", " + sensor.getType()
-						+ ", [" + startDate + " -> " + endDate + "]");
+				TimeSeriesContainer currentData = new CDECStationWebService().retrieveData(sensor, startDate, endDate);
+				progress.setMessage("Downloading data for " + sensor.getStationId() + ", " + sensor.getType() + ", ["
+						+ startDate + " -> " + endDate + "]");
 				progress.incrementProgress();
 				synchronized (mergedData) {
 					if (mergedData.data == null) {
 						mergedData.data = currentData;
 						mergedData.fullName = currentData.fullName;
 					} else {
-						new TimeSeriesMath(currentData).mergeTimeSeries(
-								new TimeSeriesMath(mergedData.data)).getData(
-								mergedData.data);
+						new TimeSeriesMath(currentData).mergeTimeSeries(new TimeSeriesMath(mergedData.data))
+								.getData(mergedData.data);
 					}
 				}
 			} catch (Exception ex) {
-				System.err.println("Failure to download data from "
-						+ sensor.getStationId() + ", " + sensor.getType()
+				System.err.println("Failure to download data from " + sensor.getStationId() + ", " + sensor.getType()
 						+ ", [" + startDate + " -> " + endDate + "]");
 				ex.printStackTrace();
 			}

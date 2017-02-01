@@ -61,7 +61,8 @@ public class CDECStationCache {
 		service = new CDECStationWebService();
 		stations.addAll(service.fetchDailyStations());
 		stations.addAll(service.fetchRealtimeStations());
-		ExecutorService executorService = Executors.newFixedThreadPool(25);
+		ExecutorService executorService = Executors.newFixedThreadPool(20);
+		System.out.println("Found a total of "+stations.size()+" stations. Now retrieving each stations meta data...");
 		for (final CDECStation station : stations) {
 			executorService.execute(new CDECStationMetadataFetchCommand(station, idToStationMap));
 		}
@@ -108,13 +109,18 @@ public class CDECStationCache {
 
 		@Override
 		public void run() {
-			try {
-				CDECStation stationWithMetaData = new CDECStationWebService().retrieveStationMetadata(station);
-				System.out.println("Retreieved station: "+station.getId());
-				idToStationMap.put(station.getId(), stationWithMetaData);
-			} catch (Exception ex) {
-				System.err.println("Exception : " + ex.getMessage()
-						+ " when processing station id: " + station.getId());
+			int ntries = 3; // trying upto 3 times, because CDEC fails to return data at times
+			for(int i=0; i < ntries; i++){
+				try {
+					Thread.sleep(Math.round((2500+Math.random()*5000)*i)); // backoff in a random fashion between 2.5 - 7.5 seconds for every miss increasing linearly from there
+					CDECStation stationWithMetaData = new CDECStationWebService().retrieveStationMetadata(station);
+					System.out.println("Retreieved station: "+station.getId());
+					idToStationMap.put(station.getId(), stationWithMetaData);
+					break; // if successful, terminate
+				} catch (Exception ex) {
+					System.err.println("Exception : " + ex.getMessage()
+							+ " when processing station id: " + station.getId());
+				}
 			}
 		}
 	}
