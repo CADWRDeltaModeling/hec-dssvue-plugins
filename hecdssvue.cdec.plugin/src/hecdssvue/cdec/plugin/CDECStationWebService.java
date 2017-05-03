@@ -1,13 +1,5 @@
 package hecdssvue.cdec.plugin;
 
-import hec.heclib.util.HecTime;
-import hec.hecmath.TimeSeriesMath;
-import hec.io.TimeSeriesContainer;
-import hecdssvue.cdec.plugin.CDECStationWebService.CDECSensorDataDownloadTask.MergedData;
-
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
 import java.io.StringReader;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -21,15 +13,21 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
+import javax.swing.JOptionPane;
+
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 
+import hec.heclib.util.HecTime;
+import hec.hecmath.TimeSeriesMath;
+import hec.io.TimeSeriesContainer;
+import hecdssvue.cdec.plugin.CDECStationWebService.CDECSensorDataDownloadTask.MergedData;
 import rma.util.DoubleArray;
 import rma.util.IntArray;
 
 public class CDECStationWebService {
-	public static final String CDEC_BASE_URL = "http://cdec.water.ca.gov";
+	public static String CDEC_BASE_URL = "http://cdec.water.ca.gov";
 	public static final HashMap<String, String> DURATION_MAP = new HashMap<String, String>();
 	public static final HashMap<String, String> DSS_INTERVAL = new HashMap<String, String>();
 	static {
@@ -161,11 +159,13 @@ public class CDECStationWebService {
 	public static final SimpleDateFormat hecDateFormat = new SimpleDateFormat("ddMMMyyyy");
 
 	public HecTime createDateTime(String date, String time) {
-		try {
-			return new HecTime(hecDateFormat.format(cdecQueryDateFormat.parse(date)), time);
-		} catch (Exception ex) {
-			ex.printStackTrace();
-			return new HecTime();
+		synchronized (HecTime.class) {
+			try {
+				return new HecTime(hecDateFormat.format(cdecQueryDateFormat.parse(date)), time);
+			} catch (Exception ex) {
+				ex.printStackTrace();
+				return new HecTime();
+			}
 		}
 	}
 
@@ -335,11 +335,30 @@ public class CDECStationWebService {
 		}
 
 		public void run() {
+			TimeSeriesContainer currentData = null;
+			int ntries = 3; // upto 3 tries with varying time backing off in a
+							// linear fashion
+			for (int i = 0; i < ntries; i++) {
+				try {
+					Thread.sleep(Math.round(Math.random() * 5000 * i));
+					currentData = new CDECStationWebService().retrieveData(sensor, startDate, endDate);
+					progress.setMessage("Downloading data for " + sensor.getStationId() + ", " + sensor.getType()
+							+ ", [" + startDate + " -> " + endDate + "]");
+					progress.incrementProgress();
+					break;
+				} catch (Exception ex) {
+					progress.setMessage("Failed to download data");
+					System.err.println("Failure to download data from " + sensor.getStationId() + ", "
+							+ sensor.getType() + ", [" + startDate + " -> " + endDate + "]");
+					ex.printStackTrace();
+				}
+			}
+			if (currentData == null) {
+				JOptionPane.showMessageDialog(null, "Failure to download data from " + sensor.getStationId() + ", "
+						+ sensor.getType() + ", [" + startDate + " -> " + endDate + "]", "Error", JOptionPane.ERROR_MESSAGE);
+				return;
+			}
 			try {
-				TimeSeriesContainer currentData = new CDECStationWebService().retrieveData(sensor, startDate, endDate);
-				progress.setMessage("Downloading data for " + sensor.getStationId() + ", " + sensor.getType() + ", ["
-						+ startDate + " -> " + endDate + "]");
-				progress.incrementProgress();
 				synchronized (mergedData) {
 					if (mergedData.data == null) {
 						mergedData.data = currentData;
@@ -350,7 +369,7 @@ public class CDECStationWebService {
 					}
 				}
 			} catch (Exception ex) {
-				System.err.println("Failure to download data from " + sensor.getStationId() + ", " + sensor.getType()
+				System.err.println("Failure to merge data from " + sensor.getStationId() + ", " + sensor.getType()
 						+ ", [" + startDate + " -> " + endDate + "]");
 				ex.printStackTrace();
 			}

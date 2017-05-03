@@ -17,10 +17,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.AbstractAction;
+import javax.swing.AbstractButton;
 import javax.swing.Action;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -36,7 +38,6 @@ import javax.swing.JTextField;
 import javax.swing.JToggleButton;
 import javax.swing.RowFilter;
 import javax.swing.SwingUtilities;
-import javax.swing.SwingWorker;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.event.TableModelEvent;
@@ -52,6 +53,9 @@ import hec.heclib.util.booleanContainer;
 import hec.io.TimeSeriesContainer;
 
 public class CDECPlugin {
+	// FIXME: Change this with every release
+	public static final String VERSION = "1.2";
+
 	public static void main(Object[] args) {
 		final CDECPlugin plugin = new CDECPlugin();
 		final ListSelection listSelection = (ListSelection) args[0];
@@ -109,9 +113,7 @@ public class CDECPlugin {
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
-		// FIXME: Change this with every release
-		String version = "1.1";
-		final JFrame fr = new JFrame("CDEC Downloader" + " [" + version + "]");
+		final JFrame fr = new JFrame("CDEC Downloader" + " [" + CDECPlugin.VERSION + "]");
 		//
 		JPanel controlPanel = new JPanel();
 		final JToggleButton showSelectedSensors = new JToggleButton("Show Selected Only");
@@ -283,6 +285,21 @@ public class CDECPlugin {
 		
 		
 		optionsMenu.add(recacheAction);
+		JCheckBoxMenuItem useInternalSiteItem = new JCheckBoxMenuItem("Use cdec4gov internal site", false);
+		useInternalSiteItem.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				AbstractButton abtn = (AbstractButton) e.getSource();
+				if (abtn.getModel().isSelected()){
+					CDECStationWebService.CDEC_BASE_URL="http://cdec4gov.water.ca.gov";
+				} else {
+					CDECStationWebService.CDEC_BASE_URL="http://cdec.water.ca.gov";
+				}			
+			}
+		});
+		optionsMenu.add(useInternalSiteItem);
+		
 		menubar.add(optionsMenu);
 		fr.setJMenuBar(menubar);
 		// fr.setIconImage(image);
