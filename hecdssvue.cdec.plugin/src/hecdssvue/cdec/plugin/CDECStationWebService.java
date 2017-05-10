@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.TimeZone;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -155,13 +156,25 @@ public class CDECStationWebService {
 	}
 
 	public static final SimpleDateFormat cdecDateFormat = new SimpleDateFormat("MM/dd/yyyy");
-	public static final SimpleDateFormat cdecQueryDateFormat = new SimpleDateFormat("yyyyMMdd");
+	public static final SimpleDateFormat cdecQueryDateFormat = new SimpleDateFormat("yyyyMMdd HHmm");
 	public static final SimpleDateFormat hecDateFormat = new SimpleDateFormat("ddMMMyyyy");
+	public static final SimpleDateFormat hecTimeFormat = new SimpleDateFormat("HHmm");
+	public static final TimeZone pacificDaylightTZ = TimeZone.getTimeZone("America/Los_Angeles");
+	public static final TimeZone gmtShiftedTZ = TimeZone.getTimeZone("Etc/GMT+8");
+	static {
+		// This code is good only for California.
+		cdecDateFormat.setTimeZone(pacificDaylightTZ);
+		cdecQueryDateFormat.setTimeZone(pacificDaylightTZ);
+
+		hecDateFormat.setTimeZone(gmtShiftedTZ);
+		hecTimeFormat.setTimeZone(gmtShiftedTZ);
+	}
 
 	public HecTime createDateTime(String date, String time) {
 		synchronized (HecTime.class) {
 			try {
-				return new HecTime(hecDateFormat.format(cdecQueryDateFormat.parse(date)), time);
+				Date rawDate = cdecQueryDateFormat.parse(date + " " + time);
+				return new HecTime(hecDateFormat.format(rawDate), hecTimeFormat.format(rawDate));
 			} catch (Exception ex) {
 				ex.printStackTrace();
 				return new HecTime();
@@ -209,6 +222,15 @@ public class CDECStationWebService {
 		while (iterator.hasNext()) {
 			record = iterator.next();
 			HecTime time = createDateTime(record.get(0), record.get(1));
+			if (i > 0) {
+				int prevTime = times.elementAt(i-1);
+				while (time.value() <= prevTime) { // reverse find right place
+					times.removeElementAt(i-1);
+					values.removeElementAt(i-1);
+					i--;
+					prevTime = times.elementAt(i-1);
+				}
+			}
 			times.insertElementAt(time.value(), i);
 			double value = record.get(2).equals("m") ? -901.0 : Double.parseDouble(record.get(2));
 			values.insertElementAt(value, i);
@@ -354,12 +376,15 @@ public class CDECStationWebService {
 				}
 			}
 			if (currentData == null) {
-				JOptionPane.showMessageDialog(null, "Failure to download data from " + sensor.getStationId() + ", "
-						+ sensor.getType() + ", [" + startDate + " -> " + endDate + "]", "Error", JOptionPane.ERROR_MESSAGE);
+				JOptionPane
+						.showMessageDialog(null,
+								"Failure to download data from " + sensor.getStationId() + ", " + sensor.getType()
+										+ ", [" + startDate + " -> " + endDate + "]",
+								"Error", JOptionPane.ERROR_MESSAGE);
 				return;
 			}
-			try {
-				synchronized (mergedData) {
+			synchronized (mergedData) {
+				try {
 					if (mergedData.data == null) {
 						mergedData.data = currentData;
 						mergedData.fullName = currentData.fullName;
@@ -367,11 +392,11 @@ public class CDECStationWebService {
 						new TimeSeriesMath(currentData).mergeTimeSeries(new TimeSeriesMath(mergedData.data))
 								.getData(mergedData.data);
 					}
+				} catch (Exception ex) {
+					System.err.println("Failure to merge data from " + sensor.getStationId() + ", " + sensor.getType()
+							+ ", [" + startDate + " -> " + endDate + "]");
+					ex.printStackTrace();
 				}
-			} catch (Exception ex) {
-				System.err.println("Failure to merge data from " + sensor.getStationId() + ", " + sensor.getType()
-						+ ", [" + startDate + " -> " + endDate + "]");
-				ex.printStackTrace();
 			}
 		}
 	}
