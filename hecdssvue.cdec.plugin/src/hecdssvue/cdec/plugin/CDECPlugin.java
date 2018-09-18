@@ -314,10 +314,12 @@ public class CDECPlugin {
 	protected void showErrorDialog(Exception e) {
 		StringWriter stringWriter = new StringWriter();
 		e.printStackTrace(new PrintWriter(stringWriter));
+		/*
 		JOptionPane.showMessageDialog(listSelection,
 				"Error: " + e.getMessage()
 						+ stringWriter.getBuffer().substring(0, Math.max(30, stringWriter.getBuffer().length())),
 				"Error Message", JOptionPane.ERROR_MESSAGE);
+				*/
 	}
 
 	protected void doFilter() {

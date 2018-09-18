@@ -20,6 +20,8 @@ import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 
+import com.sun.corba.se.impl.orbutil.closure.Constant;
+
 import hec.heclib.util.HecTime;
 import hec.hecmath.TimeSeriesMath;
 import hec.io.TimeSeriesContainer;
@@ -156,6 +158,7 @@ public class CDECStationWebService {
 	}
 
 	public static final SimpleDateFormat cdecDateFormat = new SimpleDateFormat("MM/dd/yyyy");
+	public static final SimpleDateFormat cdecUrlQueryDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 	public static final SimpleDateFormat cdecQueryDateFormat = new SimpleDateFormat("yyyyMMdd HHmm");
 	public static final SimpleDateFormat hecDateFormat = new SimpleDateFormat("ddMMMyyyy");
 	public static final SimpleDateFormat hecTimeFormat = new SimpleDateFormat("HHmm");
@@ -195,8 +198,8 @@ public class CDECStationWebService {
 					+ (sensor.getSubType().equals("") ? "" : ", " + sensor.getSubType()) + ", "
 					+ sensor.getUnits().toLowerCase());
 		}
-		String url = "/cgi-progs/queryCSV?station_id=" + sensor.getStationId() + "&dur_code=" + durationCode
-				+ "&sensor_num=" + sensorDef.getSensorNumber() + "&start_date=" + startDate + "&end_date=" + endDate;
+		String url = "/dynamicapp/req/CSVDataServlet?Stations=" + sensor.getStationId() + "&dur_code=" + durationCode
+				+ "&SensorNums=" + sensorDef.getSensorNumber() + "&Start=" + startDate + "&End=" + endDate;
 		String dataInUrl = Utils.fetchDataInUrl(CDEC_BASE_URL + url);
 		StringReader reader = new StringReader(dataInUrl);
 		CSVFormat format = CSVFormat.newFormat(',').withQuote('\'');
@@ -210,18 +213,17 @@ public class CDECStationWebService {
 			reader.close();
 			return null;
 		}
-		record = iterator.next(); // second line
-		int sensorId = Integer.parseInt(record.get(0));
+		record = iterator.next(); // second line -- extract redundant repeated info such as sensor num, units, sensor type etc.
+		int sensorId = Integer.parseInt(record.get(2));
 		// String timezoneStr = record.get(1);
-		String[] dataTypeFields = record.get(2).split("\\(");
-		String dataType = dataTypeFields[0].trim();
-		String units = dataTypeFields[1].split("\\)")[0].trim();
+		String dataType = record.get(3).trim();
+		String units = record.get(8).trim();
 		IntArray times = new IntArray(100);
 		DoubleArray values = new DoubleArray(100);
 		int i = 0;
-		while (iterator.hasNext()) {
-			record = iterator.next();
-			HecTime time = createDateTime(record.get(0), record.get(1));
+		double value = 0.0;
+		do {
+			HecTime time = createDateTime(record.get(4), record.get(5));
 			if (i > 0) {
 				int prevTime = times.elementAt(i-1);
 				while (time.value() <= prevTime) { // reverse find right place
@@ -232,10 +234,15 @@ public class CDECStationWebService {
 				}
 			}
 			times.insertElementAt(time.value(), i);
-			double value = record.get(2).equals("m") ? -901.0 : Double.parseDouble(record.get(2));
+			try{
+				value = record.get(7).equals("m") ? -901.0 : Double.parseDouble(record.get(6));
+			} catch (NumberFormatException ex){
+				value = -901.0;
+			}
 			values.insertElementAt(value, i);
 			i++;
-		}
+			record = iterator.next();
+		} while (iterator.hasNext());
 		reader.close();
 		parser.close();
 		times.trimToSize();
@@ -313,8 +320,8 @@ public class CDECStationWebService {
 				Thread.sleep(1000);
 				System.out.println("Work Queue is full! Waiting");
 			}
-			executorService.execute(new CDECSensorDataDownloadTask(sensor, cdecDateFormat.format(currentStartDate),
-					cdecDateFormat.format(currentEndDate), dataContainer, progress));
+			executorService.execute(new CDECSensorDataDownloadTask(sensor, cdecUrlQueryDateFormat.format(currentStartDate),
+					cdecUrlQueryDateFormat.format(currentEndDate), dataContainer, progress));
 
 			currentStartDate = currentEndDate;
 			if (currentEndDate.equals(endDate)) {

@@ -44,7 +44,7 @@ public class CDECStationCache {
 		stations = new ArrayList<CDECStation>();
 	}
 	
-	protected String getAbsolutePathToCacheFile(){
+	public String getAbsolutePathToCacheFile(){
 		return Utils.getAppDataDir() + File.separator +STATIONS_CACHE_FILE;
 	}
 	
