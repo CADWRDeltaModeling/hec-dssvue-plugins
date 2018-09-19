@@ -54,7 +54,7 @@ import hec.io.TimeSeriesContainer;
 
 public class CDECPlugin {
 	// FIXME: Change this with every release
-	public static final String VERSION = "1.2";
+	public static final String VERSION = "1.3-09/19/2018";
 
 	public static void main(Object[] args) {
 		final CDECPlugin plugin = new CDECPlugin();

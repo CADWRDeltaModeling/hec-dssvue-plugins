@@ -383,11 +383,15 @@ public class CDECStationWebService {
 				}
 			}
 			if (currentData == null) {
+				/*
 				JOptionPane
 						.showMessageDialog(null,
 								"Failure to download data from " + sensor.getStationId() + ", " + sensor.getType()
 										+ ", [" + startDate + " -> " + endDate + "]",
 								"Error", JOptionPane.ERROR_MESSAGE);
+								*/
+				System.err.println("Failure to download data from " + sensor.getStationId() + ", " + sensor.getType()
+				+ ", [" + startDate + " -> " + endDate + "]");
 				return;
 			}
 			synchronized (mergedData) {
