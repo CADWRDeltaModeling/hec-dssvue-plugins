@@ -213,7 +213,9 @@ public class CDECStationWebService {
 			reader.close();
 			return null;
 		}
-		record = iterator.next(); // second line -- extract redundant repeated info such as sensor num, units, sensor type etc.
+		record = iterator.next(); // second line -- extract redundant repeated
+									// info such as sensor num, units, sensor
+									// type etc.
 		int sensorId = Integer.parseInt(record.get(2));
 		// String timezoneStr = record.get(1);
 		String dataType = record.get(3).trim();
@@ -225,18 +227,18 @@ public class CDECStationWebService {
 		do {
 			HecTime time = createDateTime(record.get(4), record.get(5));
 			if (i > 0) {
-				int prevTime = times.elementAt(i-1);
+				int prevTime = times.elementAt(i - 1);
 				while (time.value() <= prevTime) { // reverse find right place
-					times.removeElementAt(i-1);
-					values.removeElementAt(i-1);
+					times.removeElementAt(i - 1);
+					values.removeElementAt(i - 1);
 					i--;
-					prevTime = times.elementAt(i-1);
+					prevTime = times.elementAt(i - 1);
 				}
 			}
 			times.insertElementAt(time.value(), i);
-			try{
+			try {
 				value = record.get(7).equals("m") ? -901.0 : Double.parseDouble(record.get(6));
-			} catch (NumberFormatException ex){
+			} catch (NumberFormatException ex) {
 				value = -901.0;
 			}
 			values.insertElementAt(value, i);
@@ -320,8 +322,9 @@ public class CDECStationWebService {
 				Thread.sleep(1000);
 				System.out.println("Work Queue is full! Waiting");
 			}
-			executorService.execute(new CDECSensorDataDownloadTask(sensor, cdecUrlQueryDateFormat.format(currentStartDate),
-					cdecUrlQueryDateFormat.format(currentEndDate), dataContainer, progress));
+			executorService
+					.execute(new CDECSensorDataDownloadTask(sensor, cdecUrlQueryDateFormat.format(currentStartDate),
+							cdecUrlQueryDateFormat.format(currentEndDate), dataContainer, progress));
 
 			currentStartDate = currentEndDate;
 			if (currentEndDate.equals(endDate)) {
@@ -376,7 +379,7 @@ public class CDECStationWebService {
 					progress.incrementProgress();
 					break;
 				} catch (Exception ex) {
-					progress.setMessage("Failed to download data");
+					progress.setMessage("Failed to download data: Try # "+i);
 					System.err.println("Failure to download data from " + sensor.getStationId() + ", "
 							+ sensor.getType() + ", [" + startDate + " -> " + endDate + "]");
 					ex.printStackTrace();
@@ -384,14 +387,13 @@ public class CDECStationWebService {
 			}
 			if (currentData == null) {
 				/*
-				JOptionPane
-						.showMessageDialog(null,
-								"Failure to download data from " + sensor.getStationId() + ", " + sensor.getType()
-										+ ", [" + startDate + " -> " + endDate + "]",
-								"Error", JOptionPane.ERROR_MESSAGE);
-								*/
-				System.err.println("Failure to download data from " + sensor.getStationId() + ", " + sensor.getType()
-				+ ", [" + startDate + " -> " + endDate + "]");
+				 * JOptionPane .showMessageDialog(null,
+				 * "Failure to download data from " + sensor.getStationId() +
+				 * ", " + sensor.getType() + ", [" + startDate + " -> " +
+				 * endDate + "]", "Error", JOptionPane.ERROR_MESSAGE);
+				 */
+				System.err.println("Failure to download data from after " + ntries + "tries" + sensor.getStationId()
+						+ ", " + sensor.getType() + ", [" + startDate + " -> " + endDate + "]");
 				return;
 			}
 			synchronized (mergedData) {
